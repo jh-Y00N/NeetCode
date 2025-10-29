@@ -5,11 +5,6 @@ func maxProfit(_ prices: [Int]) -> Int {
     var bought = false
     var priceBought = 0
     
-    if prices.sorted().first == prices.first {
-        priceBought = prices.first!
-        bought = true
-    }
-    
     for i in 1..<prices.count {
         if prices[i - 1] < prices[i] {
             if !bought {
