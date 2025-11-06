@@ -5,8 +5,8 @@ func validPalindrome(_ s: String) -> Bool {
     let str = Array(s)
     while i < j {
         if str[i] != str[j] {
-            var leftDeletedStr = str[..<i] + str[(i + 1)...]
-            var rightDeletedStr = str[..<j] + str[(j + 1)...]
+            var leftDeletedStr = str[(i + 1)...j]
+            var rightDeletedStr = str[i..<j]
             
             return String(leftDeletedStr) == String(leftDeletedStr.reversed()) || String(rightDeletedStr) == String(rightDeletedStr.reversed())
            
