@@ -10,11 +10,6 @@ func numRescueBoats(_ people: [Int], _ limit: Int) -> Int {
     while peopleLeft.count > 1, left < right {
         if peopleLeft[left] + peopleLeft[right] > limit {
             right -= 1
-        } else if peopleLeft[left] + peopleLeft[right] == limit {
-            count += 1
-            peopleLeft.remove(at: right)
-            peopleLeft.remove(at: left)
-            right -= 2
         } else {
             count += 1
             peopleLeft.remove(at: right)
