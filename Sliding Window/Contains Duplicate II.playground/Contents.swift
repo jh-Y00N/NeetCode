@@ -7,11 +7,10 @@ func containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
             if abs(i - index) <= k {
                 return true
             } else {
-                numDict[nums[i]] = i
+                
             }
-        } else {
-            numDict[nums[i]] = i
         }
+        numDict[nums[i]] = i
     }
     return false
 }
