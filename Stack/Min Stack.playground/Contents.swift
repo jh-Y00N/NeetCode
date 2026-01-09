@@ -11,7 +11,7 @@ class MinStack {
     
     func push(_ val: Int) {
         stack.append(val)
-        minNum.append(minNum.count == 0 ? val : min(minNum.last!, val))
+        minNum.append(min(minNum.last ?? val, val))
     }
     
     func pop() {
