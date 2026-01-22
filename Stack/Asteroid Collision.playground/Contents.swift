@@ -7,29 +7,31 @@ func asteroidCollision(_ asteroids: [Int]) -> [Int] {
         if asteroidStack.isEmpty {
             asteroidStack.append(asteroid)
         } else {
-            if asteroidStack.last! + asteroid == 0 {
-                asteroidStack.removeLast()
-            } else if asteroidStack.last! + asteroid < 0 {
-                while !asteroidStack.isEmpty {
-                    if let last = asteroidStack.last, last > 0 {
-                        if last + asteroid < 0 {
-                            asteroidStack.removeLast()
-                        } else {
-                            removeAsteroid = true
-                            if last + asteroid == 0 {
+            if asteroidStack.last! > 0, asteroid < 0 {
+                if abs(asteroidStack.last!) == abs(asteroid) {
+                    asteroidStack.removeLast()
+                } else if abs(asteroidStack.last!) < abs(asteroid) {
+                    asteroidStack.removeLast()
+                    while !asteroidStack.isEmpty {
+                        if let last = asteroidStack.last, last > 0 {
+                            if abs(last) < abs(asteroid) {
                                 asteroidStack.removeLast()
+                            } else {
+                                removeAsteroid = true
+                                if abs(last) == abs(asteroid) {
+                                    asteroidStack.removeLast()
+                                }
+                                break
                             }
+                        } else {
                             break
                         }
-                        
-                    } else {
-                        break
                     }
-                }
-                if removeAsteroid {
-                    removeAsteroid = false
-                } else {
-                    asteroidStack.append(asteroid)
+                    if removeAsteroid {
+                        removeAsteroid = false
+                    } else {
+                        asteroidStack.append(asteroid)
+                    }
                 }
             } else {
                 asteroidStack.append(asteroid)
