@@ -1,23 +1,20 @@
 import Foundation
 
 class StockSpanner {
-    var stockStack: [Int]
+    var stockStack: [(price: Int, span: Int)]
     
     init() {
         stockStack = []
     }
 
     func next(_ price: Int) -> Int {
-        stockStack.append(price)
-        var count = 0
-        for i in stride(from: stockStack.count - 1, through: 0, by: -1) {
-            if stockStack[i] <= price {
-                count += 1
-            } else {
-                break
-            }
+        var span = 1
+        while let last = stockStack.last, last.price <= price {
+            span += last.span
+            stockStack.removeLast()
         }
-        return count
+        stockStack.append((price, span))
+        return span
     }
 }
 
