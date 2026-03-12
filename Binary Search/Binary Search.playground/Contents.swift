@@ -4,7 +4,7 @@ func search(_ nums: [Int], _ target: Int) -> Int {
     var start = 0
     var end = nums.count - 1
     
-    while start >= 0, end < nums.count, start <= end {
+    while start <= end {
         var index = (start + end) / 2
         if nums[index] < target {
             start = index + 1
